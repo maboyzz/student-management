@@ -26,6 +26,7 @@ public class Main {
                     break;
                 case 2 :
                     System.out.println(" read students ");
+                    stdStatic.readStudents();
                     break;
                 case 3:
 

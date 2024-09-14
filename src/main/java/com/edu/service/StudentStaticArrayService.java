@@ -23,6 +23,9 @@ public class StudentStaticArrayService {
 
     }
 
+    String checkCode;
+
+
     private Student inputStudentInfo() {
         Student st = new Student();
         Scanner sc = new Scanner(System.in);
@@ -63,7 +66,7 @@ public class StudentStaticArrayService {
             System.out.println("nhap dia chi : ");
             address = sc.nextLine();
             if (isValidAddress(address)) {
-                st.setAddress(sc.nextLine());
+                st.setAddress(address);
                 break;
             }
         } while (true);
@@ -118,14 +121,14 @@ public class StudentStaticArrayService {
             }
         } while (true);
 
-       do {
-           System.out.println("nhap diem trung binh : ");
-           gpaText = sc.nextLine();
-           if (StudentValidator.isGpa(gpaText)){
-               st.setGpa(Float.parseFloat(gpaText));
-               break;
-           }
-       }while (true);
+        do {
+            System.out.println("nhap diem trung binh : ");
+            gpaText = sc.nextLine();
+            if (StudentValidator.isGpa(gpaText)) {
+                st.setGpa(Float.parseFloat(gpaText));
+                break;
+            }
+        } while (true);
 
         return st;
     }
@@ -144,7 +147,21 @@ public class StudentStaticArrayService {
                 System.out.println(student.toString());
             }
         }
-
     }
 
+    public void readStudents() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ma code sinh vien can tim kiem");
+        checkCode = sc.nextLine();
+        for (int i = 0; i < arrStudent.length; i++) {
+            if (checkCode.equals(arrStudent[i].getCode())) {
+                System.out.println(arrStudent[i].toString());
+                return;
+            }
+
+        }
+        System.out.println("khong co du lieu phu hop");
+    }
 }
+
+
