@@ -17,8 +17,8 @@ public class Main {
         do {
             System.out.println(" 1.create students ");
             System.out.println(" 2.read students ");
-            System.out.println(" 3.upadte students ");
-
+            System.out.println(" 3.update students ");
+            System.out.println(" 4.delete students ");
 
             int choice = sc.nextInt();
             switch (choice){
@@ -31,8 +31,12 @@ public class Main {
                     stdStatic.readStudents();
                     break;
                 case 3:
-                    System.out.println("upadte students ");
+                    System.out.println(" update students ");
                     stdStatic.updateStudents();
+                    break;
+                case 4:
+                    System.out.println(" delete students ");
+                    stdStatic.deleteStudents1();
                     break;
                 default:
                     System.out.println("!");

@@ -115,7 +115,7 @@ public class StudentStaticArrayService {
         do {
             System.out.println("nhap nam theo hoc");
             yearOfCollegeText = sc.nextLine();
-            if (StudentValidator.isStartYearOfCollege(yearOfCollegeText)) {
+            if (isStartYearOfCollege(yearOfCollegeText)) {
                 st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
                 break;
             }
@@ -124,7 +124,7 @@ public class StudentStaticArrayService {
         do {
             System.out.println("nhap diem trung binh : ");
             gpaText = sc.nextLine();
-            if (StudentValidator.isGpa(gpaText)) {
+            if (isGpa(gpaText)) {
                 st.setGpa(Float.parseFloat(gpaText));
                 break;
             }
@@ -133,8 +133,7 @@ public class StudentStaticArrayService {
         return st;
     }
 
-    private Student updateStudentInfo() {
-        Student st = new Student();
+    private Student updateStudentInfo(Student st) {
         Scanner sc = new Scanner(System.in);
         String fullName;
         String address;
@@ -205,7 +204,7 @@ public class StudentStaticArrayService {
         do {
             System.out.println("nhap nam theo hoc");
             yearOfCollegeText = sc.nextLine();
-            if (StudentValidator.isStartYearOfCollege(yearOfCollegeText)) {
+            if (isStartYearOfCollege(yearOfCollegeText)) {
                 st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
                 break;
             }
@@ -214,7 +213,7 @@ public class StudentStaticArrayService {
         do {
             System.out.println("nhap diem trung binh : ");
             gpaText = sc.nextLine();
-            if (StudentValidator.isGpa(gpaText)) {
+            if (isGpa(gpaText)) {
                 st.setGpa(Float.parseFloat(gpaText));
                 break;
             }
@@ -244,9 +243,12 @@ public class StudentStaticArrayService {
         System.out.println("Nhap ma code sinh vien can tim kiem");
         checkCode = sc.nextLine();
         for (int i = 0; i < arrStudent.length; i++) {
+            if (arrStudent[i] == null) {
+                System.out.println("sinh vien khong co du lieu");
+                return;
+            }
             if (checkCode.equals(arrStudent[i].getCode())) {
                 System.out.println(arrStudent[i].toString());
-                return;
             }
 
         }
@@ -259,13 +261,50 @@ public class StudentStaticArrayService {
         checkCode = sc.nextLine();
         for (int i = 0; i < arrStudent.length; i++) {
             if (checkCode.equals(arrStudent[i].getCode())) {
-                Student st = updateStudentInfo();
-                arrStudent[i] = st;
+                updateStudentInfo(arrStudent[i]);
                 return;
             }
 
         }
         System.out.println("khong co du lieu phu hop");
+    }
+
+    public void deleteStudents1() {
+        Scanner sc = new Scanner(System.in);
+        Integer index = null;
+        if (arrStudent == null || arrStudent.length == 0) {
+            System.out.println(" mang khong co phan tu");
+            return;
+        }
+        System.out.println("Nhap ma code sinh vien can xoa");
+        checkCode = sc.nextLine();
+
+
+
+        for (int i = 0; i < arrStudent.length; i++) {
+            if ( arrStudent[i] != null && checkCode.equals(arrStudent[i].getCode())) {
+                index = i;
+                break;
+            }
+        }
+        if (index == null) {
+            System.out.println("khong co du lieu phu hop");
+            return;
+        }
+        System.out.println("da xoa nguoi dung : " + arrStudent[index].toString());
+        if (arrStudent.length >= 2) {
+            for (int i = index; i <= arrStudent.length - 2; i++) {
+                arrStudent[i] = arrStudent[i + 1];
+            }
+        }
+        arrStudent[arrStudent.length - 1] = null;
+
+        for (int i = 0; i < arrStudent.length; i++) {
+            if (arrStudent[i] != null) {
+                System.out.println("danh sach sau khi da xoa");
+                System.out.println(arrStudent[i].toString());
+            }
+        }
 
     }
 }
