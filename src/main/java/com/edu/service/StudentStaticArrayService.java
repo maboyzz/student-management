@@ -133,6 +133,96 @@ public class StudentStaticArrayService {
         return st;
     }
 
+    private Student updateStudentInfo() {
+        Student st = new Student();
+        Scanner sc = new Scanner(System.in);
+        String fullName;
+        String address;
+        String dobText;
+        String heightText;
+        String weightText;
+        String studentCode;
+        String schoolName;
+        String yearOfCollegeText;
+        String gpaText;
+
+
+        do {
+            System.out.println("nhap full name : ");
+            fullName = sc.nextLine();
+
+            if (isValidFullName(fullName)) {
+                st.setFullName(fullName);
+                break;
+            }
+
+        } while (true);
+        do {
+
+            System.out.println("nhap ngay thang nam sinh (yyyy-mm-dd) :");
+            dobText = sc.nextLine();
+
+            if (isValidDob(dobText)) {
+
+                st.setDateOfBirth(LocalDate.parse(dobText, DOB_FORMATTER));
+                break;
+            }
+
+        } while (true);
+        do {
+            System.out.println("nhap dia chi : ");
+            address = sc.nextLine();
+            if (isValidAddress(address)) {
+                st.setAddress(address);
+                break;
+            }
+        } while (true);
+        do {
+            System.out.println("nhap chieu cao : ");
+            heightText = sc.nextLine();
+            if (isValidHeight(heightText)) {
+                st.setHeight(Float.parseFloat(heightText));
+                break;
+            }
+        } while (true);
+        do {
+            System.out.println("nhap can nang : ");
+            weightText = sc.nextLine();
+            if (isValidWeight(weightText)) {
+                st.setWeight(Float.parseFloat(weightText));
+                break;
+            }
+        } while (true);
+        do {
+            System.out.println("nhap truong :");
+            schoolName = sc.nextLine();
+            if (isValidSchoolName(schoolName)) {
+                st.setSchool(schoolName);
+                break;
+            }
+        } while (true);
+
+        do {
+            System.out.println("nhap nam theo hoc");
+            yearOfCollegeText = sc.nextLine();
+            if (StudentValidator.isStartYearOfCollege(yearOfCollegeText)) {
+                st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
+                break;
+            }
+        } while (true);
+
+        do {
+            System.out.println("nhap diem trung binh : ");
+            gpaText = sc.nextLine();
+            if (StudentValidator.isGpa(gpaText)) {
+                st.setGpa(Float.parseFloat(gpaText));
+                break;
+            }
+        } while (true);
+
+        return st;
+    }
+
     public void addStudents() {
 
         for (int i = 0; i < arrStudent.length; i++) {
@@ -161,6 +251,22 @@ public class StudentStaticArrayService {
 
         }
         System.out.println("khong co du lieu phu hop");
+    }
+
+    public void updateStudents() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ma code sinh vien can sua");
+        checkCode = sc.nextLine();
+        for (int i = 0; i < arrStudent.length; i++) {
+            if (checkCode.equals(arrStudent[i].getCode())) {
+                Student st = updateStudentInfo();
+                arrStudent[i] = st;
+                return;
+            }
+
+        }
+        System.out.println("khong co du lieu phu hop");
+
     }
 }
 
