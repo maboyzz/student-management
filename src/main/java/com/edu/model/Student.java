@@ -46,16 +46,16 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +"id=" + super.getId() +
-                ", fullName='" + super.getFullName() + '\'' +
-                ", dateOfBirth=" + super.getDateOfBirth() +
-                ", address='" + super.getAddress() + '\'' +
-                ", height=" + super.getHeight() +
-                ", weight=" + super.getWeight()+
-                "code='" + code + '\'' +
-                ", school='" + school + '\'' +
-                ", startYearOfCollege=" + startYearOfCollege +
-                ", gpa=" + gpa +
-                '}';
+        return "id = " + super.getId() +
+                ", fullName= '" + super.getFullName() + '\'' +
+                ", dateOfBirth= " + super.getDateOfBirth() +
+                ", address= " + super.getAddress()  +
+                ", height= " + super.getHeight() +
+                ", weight= " + super.getWeight()+
+                "code= " + code +
+                ", school= " + school +
+                ", startYearOfCollege= " + startYearOfCollege +
+                ", gpa= " + gpa 
+                ;
     }
 }

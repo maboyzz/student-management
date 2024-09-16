@@ -41,7 +41,7 @@ public class StudentStaticArrayService {
 
 
         do {
-            System.out.println("nhap full name : ");
+            System.out.println("Enter full name : ");
             fullName = sc.nextLine();
 
             if (isValidFullName(fullName)) {
@@ -52,7 +52,7 @@ public class StudentStaticArrayService {
         } while (true);
         do {
 
-            System.out.println("nhap ngay thang nam sinh (yyyy-mm-dd) :");
+            System.out.println("Enter your birthdate (yyyy-mm-dd) :");
             dobText = sc.nextLine();
 
             if (isValidDob(dobText)) {
@@ -63,7 +63,7 @@ public class StudentStaticArrayService {
 
         } while (true);
         do {
-            System.out.println("nhap dia chi : ");
+            System.out.println("Enter your address : ");
             address = sc.nextLine();
             if (isValidAddress(address)) {
                 st.setAddress(address);
@@ -71,7 +71,7 @@ public class StudentStaticArrayService {
             }
         } while (true);
         do {
-            System.out.println("nhap chieu cao : ");
+            System.out.println("Enter your height: ");
             heightText = sc.nextLine();
             if (isValidHeight(heightText)) {
                 st.setHeight(Float.parseFloat(heightText));
@@ -79,7 +79,7 @@ public class StudentStaticArrayService {
             }
         } while (true);
         do {
-            System.out.println("nhap can nang : ");
+            System.out.println("Enter your weight : ");
             weightText = sc.nextLine();
             if (isValidWeight(weightText)) {
                 st.setWeight(Float.parseFloat(weightText));
@@ -89,7 +89,7 @@ public class StudentStaticArrayService {
 
         tmp:
         do {
-            System.out.println("nhap code : ");
+            System.out.println("Enter student code : ");
             studentCode = sc.nextLine();
             if (isValidStudentCode(studentCode)) {
                 for (int i = 0; i < arrStudent.length; i++) {
@@ -104,7 +104,7 @@ public class StudentStaticArrayService {
 
         } while (true);
         do {
-            System.out.println("nhap truong :");
+            System.out.println("Enter school name :");
             schoolName = sc.nextLine();
             if (isValidSchoolName(schoolName)) {
                 st.setSchool(schoolName);
@@ -113,7 +113,7 @@ public class StudentStaticArrayService {
         } while (true);
 
         do {
-            System.out.println("nhap nam theo hoc");
+            System.out.println("Enter year of college :");
             yearOfCollegeText = sc.nextLine();
             if (isStartYearOfCollege(yearOfCollegeText)) {
                 st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
@@ -122,7 +122,7 @@ public class StudentStaticArrayService {
         } while (true);
 
         do {
-            System.out.println("nhap diem trung binh : ");
+            System.out.println("Enter GPA : ");
             gpaText = sc.nextLine();
             if (isGpa(gpaText)) {
                 st.setGpa(Float.parseFloat(gpaText));
@@ -147,7 +147,7 @@ public class StudentStaticArrayService {
 
 
         do {
-            System.out.println("nhap full name : ");
+            System.out.println("Enter full name : ");
             fullName = sc.nextLine();
 
             if (isValidFullName(fullName)) {
@@ -158,7 +158,7 @@ public class StudentStaticArrayService {
         } while (true);
         do {
 
-            System.out.println("nhap ngay thang nam sinh (yyyy-mm-dd) :");
+            System.out.println("Enter your birthdate (yyyy-mm-dd) :");
             dobText = sc.nextLine();
 
             if (isValidDob(dobText)) {
@@ -169,7 +169,7 @@ public class StudentStaticArrayService {
 
         } while (true);
         do {
-            System.out.println("nhap dia chi : ");
+            System.out.println("Enter your address : ");
             address = sc.nextLine();
             if (isValidAddress(address)) {
                 st.setAddress(address);
@@ -177,7 +177,7 @@ public class StudentStaticArrayService {
             }
         } while (true);
         do {
-            System.out.println("nhap chieu cao : ");
+            System.out.println("Enter your height: ");
             heightText = sc.nextLine();
             if (isValidHeight(heightText)) {
                 st.setHeight(Float.parseFloat(heightText));
@@ -185,15 +185,16 @@ public class StudentStaticArrayService {
             }
         } while (true);
         do {
-            System.out.println("nhap can nang : ");
+            System.out.println("Enter your weight : ");
             weightText = sc.nextLine();
             if (isValidWeight(weightText)) {
                 st.setWeight(Float.parseFloat(weightText));
                 break;
             }
         } while (true);
+
         do {
-            System.out.println("nhap truong :");
+            System.out.println("Enter school name :");
             schoolName = sc.nextLine();
             if (isValidSchoolName(schoolName)) {
                 st.setSchool(schoolName);
@@ -202,7 +203,7 @@ public class StudentStaticArrayService {
         } while (true);
 
         do {
-            System.out.println("nhap nam theo hoc");
+            System.out.println("Enter year of college :");
             yearOfCollegeText = sc.nextLine();
             if (isStartYearOfCollege(yearOfCollegeText)) {
                 st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
@@ -211,7 +212,7 @@ public class StudentStaticArrayService {
         } while (true);
 
         do {
-            System.out.println("nhap diem trung binh : ");
+            System.out.println("Enter GPA : ");
             gpaText = sc.nextLine();
             if (isGpa(gpaText)) {
                 st.setGpa(Float.parseFloat(gpaText));
@@ -225,12 +226,12 @@ public class StudentStaticArrayService {
     public void addStudents() {
 
         for (int i = 0; i < arrStudent.length; i++) {
-            System.out.println("nhap thong tin sinh vien : ");
+            System.out.println("Enter student information : ");
             Student st = inputStudentInfo();
             st.setId(i + 1);
             arrStudent[i] = st;
         }
-        System.out.println("Sinh viên đã nhập");
+        System.out.println("Student has been entered");
         for (Student student : arrStudent) {
             if (student != null) {
                 System.out.println(student.toString());
@@ -240,71 +241,96 @@ public class StudentStaticArrayService {
 
     public void readStudents() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap ma code sinh vien can tim kiem");
-        checkCode = sc.nextLine();
-        for (int i = 0; i < arrStudent.length; i++) {
-            if (arrStudent[i] == null) {
-                System.out.println("sinh vien khong co du lieu");
-                return;
-            }
-            if (checkCode.equals(arrStudent[i].getCode())) {
-                System.out.println(arrStudent[i].toString());
+
+        do {
+            System.out.println("Enter the code to search for");
+            checkCode = sc.nextLine();
+            if (StudentValidator.isValidStudentCode(checkCode)) {
+                for (int i = 0; i < arrStudent.length; i++) {
+                    if (arrStudent[i] == null) {
+                        System.out.println("The student has no data");
+                        return;
+                    }
+                    if (checkCode.equals(arrStudent[i].getCode())) {
+                        System.out.println(arrStudent[i].toString());
+                    }
+
+                }
+                System.out.println("No matching data");
+                break;
             }
 
-        }
-        System.out.println("khong co du lieu phu hop");
+        } while (true);
     }
 
     public void updateStudents() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap ma code sinh vien can sua");
-        checkCode = sc.nextLine();
-        for (int i = 0; i < arrStudent.length; i++) {
-            if (checkCode.equals(arrStudent[i].getCode())) {
-                updateStudentInfo(arrStudent[i]);
-                return;
-            }
 
-        }
-        System.out.println("khong co du lieu phu hop");
+
+        do {
+            System.out.println("Enter the code to edit.");
+            checkCode = sc.nextLine();
+            if (StudentValidator.isValidStudentCode(checkCode)) {
+                for (int i = 0; i < arrStudent.length; i++) {
+                    if (arrStudent[i] == null) {
+                        System.out.println("The student has no data");
+                        return;
+                    }
+                    if (checkCode.equals(arrStudent[i].getCode())) {
+                        updateStudentInfo(arrStudent[i]);
+                        return;
+                    }
+
+                }
+                System.out.println("No matching data");
+                break;
+            }
+        } while (true);
+
+
     }
 
     public void deleteStudents1() {
         Scanner sc = new Scanner(System.in);
-        Integer index = null;
-        if (arrStudent == null || arrStudent.length == 0) {
-            System.out.println(" mang khong co phan tu");
-            return;
-        }
-        System.out.println("Nhap ma code sinh vien can xoa");
-        checkCode = sc.nextLine();
 
 
+        do {
+            Integer index = null;
+            if (arrStudent == null || arrStudent.length == 0) {
+                System.out.println(" The array has no elements");
+                return;
+            }
+            System.out.println("Enter the student code to delete.");
+            checkCode = sc.nextLine();
+            if (StudentValidator.isValidStudentCode(checkCode)) {
+                for (int i = 0; i < arrStudent.length; i++) {
+                    if (arrStudent[i] != null && checkCode.equals(arrStudent[i].getCode())) {
+                        index = i;
+                        break;
+                    }
+                }
+                if (index == null) {
+                    System.out.println("No matching data");
+                    return;
+                }
+                System.out.println("Student deleted: " + arrStudent[index].toString());
+                if (arrStudent.length >= 2) {
+                    for (int i = index; i <= arrStudent.length - 2; i++) {
+                        arrStudent[i] = arrStudent[i + 1];
+                    }
+                }
+                arrStudent[arrStudent.length - 1] = null;
 
-        for (int i = 0; i < arrStudent.length; i++) {
-            if ( arrStudent[i] != null && checkCode.equals(arrStudent[i].getCode())) {
-                index = i;
+                for (int i = 0; i < arrStudent.length; i++) {
+                    if (arrStudent[i] != null) {
+                        System.out.println("Student list after deletion.");
+                        System.out.println(arrStudent[i].toString());
+                    }
+                }
                 break;
             }
-        }
-        if (index == null) {
-            System.out.println("khong co du lieu phu hop");
-            return;
-        }
-        System.out.println("da xoa nguoi dung : " + arrStudent[index].toString());
-        if (arrStudent.length >= 2) {
-            for (int i = index; i <= arrStudent.length - 2; i++) {
-                arrStudent[i] = arrStudent[i + 1];
-            }
-        }
-        arrStudent[arrStudent.length - 1] = null;
+        } while (true);
 
-        for (int i = 0; i < arrStudent.length; i++) {
-            if (arrStudent[i] != null) {
-                System.out.println("danh sach sau khi da xoa");
-                System.out.println(arrStudent[i].toString());
-            }
-        }
 
     }
 }
