@@ -5,4 +5,5 @@ import java.time.format.DateTimeFormatter;
 public class CommonConstants {
 
     public static final DateTimeFormatter DOB_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final String NUMBER_PATTERN = "\\d+";
 }

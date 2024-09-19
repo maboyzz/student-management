@@ -253,6 +253,7 @@ public class StudentStaticArrayService {
                     }
                     if (checkCode.equals(arrStudent[i].getCode())) {
                         System.out.println(arrStudent[i].toString());
+                        return;
                     }
 
                 }
@@ -321,9 +322,9 @@ public class StudentStaticArrayService {
                 }
                 arrStudent[arrStudent.length - 1] = null;
 
+                System.out.println("Student list after deletion.");
                 for (int i = 0; i < arrStudent.length; i++) {
                     if (arrStudent[i] != null) {
-                        System.out.println("Student list after deletion.");
                         System.out.println(arrStudent[i].toString());
                     }
                 }

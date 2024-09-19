@@ -4,8 +4,10 @@ import com.edu.constants.CommonConstants;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Pattern;
 
 import static com.edu.constants.CommonConstants.DOB_FORMATTER;
+import static com.edu.constants.CommonConstants.NUMBER_PATTERN;
 
 public class StudentValidator {
 
@@ -125,27 +127,36 @@ public class StudentValidator {
 
         return true;
     }
-    public static boolean isStartYearOfCollege(String yearOfCollegeText){
+
+    public static boolean isStartYearOfCollege(String yearOfCollegeText) {
         if (yearOfCollegeText == null || yearOfCollegeText.isEmpty() || yearOfCollegeText.trim().isEmpty()) {
             System.out.println(String.format(ERROR_MESS_CANNOT_BE_BLANK, "Start year of college"));
             return false;
         }
-        if (yearOfCollegeText.length() !=4 ){
+        Pattern pattern = Pattern.compile(NUMBER_PATTERN);
+        if (!pattern.matcher(yearOfCollegeText).matches()) {
+            System.out.println("Error: year of college must be a number");
+            return false;
+
+        }
+        if (yearOfCollegeText.length() != 4) {
             System.out.println("Error: Entered wrong format year of college ");
             return false;
         }
-        if (Integer.parseInt(yearOfCollegeText) < MINIMUM_YEAR_START_OF_COLLEGE){
+        if (Integer.parseInt(yearOfCollegeText) < MINIMUM_YEAR_START_OF_COLLEGE) {
             System.out.println("Error: Entered wrong year of college (1900)");
             return false;
         }
 
         return true;
     }
-    public static boolean isGpa(String gpa){
+
+    public static boolean isGpa(String gpa) {
         if (gpa == null || gpa.isEmpty() || gpa.trim().isEmpty()) {
             System.out.println(String.format(ERROR_MESS_CANNOT_BE_BLANK, "GPA"));
             return false;
-        } if (Integer.parseInt(gpa) > MAXIMUM_OF_GPA || Integer.parseInt(gpa) < MINIMUM_OF_GPA) {
+        }
+        if (Integer.parseInt(gpa) > MAXIMUM_OF_GPA || Integer.parseInt(gpa) < MINIMUM_OF_GPA) {
             System.out.println("Error: Enter GPA out of bounds (0.0 - 10.0)");
             return false;
         }
