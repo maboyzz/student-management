@@ -1,5 +1,6 @@
 package com.edu.service;
 
+import com.edu.constants.EnumAcademicRanking;
 import com.edu.model.Student;
 import com.edu.validator.StudentValidator;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import static com.edu.constants.CommonConstants.DOB_FORMATTER;
+import static com.edu.constants.EnumAcademicRanking.*;
 import static com.edu.validator.StudentValidator.*;
 
 public class StudentDynamicArrayService {
@@ -219,6 +221,7 @@ public class StudentDynamicArrayService {
 
         System.out.println("Enter student information : ");
         Student st = inputStudentInfo();
+        st.setAcademicRanking(academicRanking(st.getGpa()));
         st.setId(getMaxId() + 1);
         studentArrayList.add(st);
         System.out.println(st);
@@ -272,6 +275,7 @@ public class StudentDynamicArrayService {
     }
 
     public void updateStudents() {
+        Student st;
         if (studentArrayList == null) {
             System.out.println("Error : No matching data ");
             return;
@@ -289,7 +293,10 @@ public class StudentDynamicArrayService {
                         return;
                     }
                     if (code.equals(student.getCode())) {
+
                         updateStudentInfo(student);
+                        student.setAcademicRanking(academicRanking(student.getGpa()));
+
                         System.out.println("\n" + student);
                         return;
                     }
@@ -332,6 +339,26 @@ public class StudentDynamicArrayService {
             }
 
         } while (true);
+    }
+
+    private EnumAcademicRanking academicRanking(float gpa) {
+
+        EnumAcademicRanking check = null;
+        if (gpa < 3) {
+            check = POOR;
+        } else if (gpa >= 3 && gpa < 5) {
+            check = BELOW_AVERAGE;
+        } else if (gpa >= 5 && gpa < 6.5) {
+            check = AVERAGE;
+        } else if (gpa >= 6.5 && gpa < 7.5) {
+            check = FAIR;
+        } else if (gpa >= 7.5 && gpa < 9) {
+            check = GOOD;
+        }else {
+            check = EXCELLENT;
+        }
+
+        return check;
     }
 
 }

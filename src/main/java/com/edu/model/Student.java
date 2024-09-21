@@ -1,5 +1,7 @@
 package com.edu.model;
 
+import com.edu.constants.EnumAcademicRanking;
+
 import java.time.LocalDate;
 
 public class Student extends Person {
@@ -8,6 +10,8 @@ public class Student extends Person {
     private String school;
     private int startYearOfCollege;
     private float gpa;
+
+    private EnumAcademicRanking academicRanking;
 
     public Student() {
     }
@@ -44,6 +48,14 @@ public class Student extends Person {
         this.gpa = gpa;
     }
 
+    public EnumAcademicRanking getAcademicRanking() {
+        return academicRanking;
+    }
+
+    public void setAcademicRanking(EnumAcademicRanking academicRanking) {
+        this.academicRanking = academicRanking;
+    }
+
     @Override
     public String toString() {
         return "\nid = " + super.getId() +
@@ -55,7 +67,8 @@ public class Student extends Person {
                 "code= " + code +
                 ", school= " + school +
                 ", startYearOfCollege= " + startYearOfCollege +
-                ", gpa= " + gpa 
+                ", gpa= " + gpa +
+                ", academic ranking = " + academicRanking.getDescription()
                 ;
     }
 }
