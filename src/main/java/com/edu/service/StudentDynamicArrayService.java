@@ -137,80 +137,119 @@ public class StudentDynamicArrayService {
         String yearOfCollegeText;
         String gpaText;
 
+        boolean isClose = false;
+        String choice;
 
         do {
-            System.out.println("Enter full name : ");
-            fullName = sc.nextLine();
+            System.out.println("ban muon sua j :");
+            System.out.println("1. edit full name");
+            System.out.println("2. edit date of birth");
+            System.out.println("3. edit address");
+            System.out.println("4. edit height");
+            System.out.println("5. edit weight");
+            System.out.println("6. edit school name");
+            System.out.println("7. edit start year of college");
+            System.out.println("8. edit gpa");
+            System.out.println("9. out");
 
-            if (isValidFullName(fullName)) {
-                st.setFullName(fullName);
-                break;
+            choice = sc.nextLine();
+            switch (choice){
+                case "1" :
+                    do {
+                        System.out.println("Enter full name : ");
+                        fullName = sc.nextLine();
+
+                        if (isValidFullName(fullName)) {
+                            st.setFullName(fullName);
+                            break;
+                        }
+
+                    } while (true);
+                    break;
+
+
+                case "2" :
+                    do {
+
+                        System.out.println("Enter your birthdate (yyyy-mm-dd) :");
+                        dobText = sc.nextLine();
+
+                        if (isValidDob(dobText)) {
+
+                            st.setDateOfBirth(LocalDate.parse(dobText, DOB_FORMATTER));
+                            break;
+                        }
+
+                    } while (true);
+                    break;
+                case "3" :
+                    do {
+                        System.out.println("Enter your address : ");
+                        address = sc.nextLine();
+                        if (isValidAddress(address)) {
+                            st.setAddress(address);
+                            break;
+                        }
+                    } while (true);
+                    break;
+                case "4" :
+                    do {
+                        System.out.println("Enter your height: ");
+                        heightText = sc.nextLine();
+                        if (isValidHeight(heightText)) {
+                            st.setHeight(Float.parseFloat(heightText));
+                            break;
+                        }
+                    } while (true);
+                    break;
+                case "5" :
+                    do {
+                        System.out.println("Enter your weight : ");
+                        weightText = sc.nextLine();
+                        if (isValidWeight(weightText)) {
+                            st.setWeight(Float.parseFloat(weightText));
+                            break;
+                        }
+                    } while (true);
+                    break;
+                case "6" :
+                    do {
+                        System.out.println("Enter school name :");
+                        schoolName = sc.nextLine();
+                        if (isValidSchoolName(schoolName)) {
+                            st.setSchool(schoolName);
+                            break;
+                        }
+                    } while (true);
+
+                    break;
+                case "7" :
+                    do {
+                        System.out.println("Enter year of college :");
+                        yearOfCollegeText = sc.nextLine();
+                        if (isStartYearOfCollege(yearOfCollegeText)) {
+                            st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
+                            break;
+                        }
+                    } while (true);
+                    break;
+                case "8" :
+                    do {
+                        System.out.println("Enter GPA : ");
+                        gpaText = sc.nextLine();
+                        if (isGpa(gpaText)) {
+                            st.setGpa(Float.parseFloat(gpaText));
+                            break;
+                        }
+                    } while (true);
+
+                    break;
+                case "9" :
+                    isClose = true;
+                    break;
             }
 
-        } while (true);
-        do {
-
-            System.out.println("Enter your birthdate (yyyy-mm-dd) :");
-            dobText = sc.nextLine();
-
-            if (isValidDob(dobText)) {
-
-                st.setDateOfBirth(LocalDate.parse(dobText, DOB_FORMATTER));
-                break;
-            }
-
-        } while (true);
-        do {
-            System.out.println("Enter your address : ");
-            address = sc.nextLine();
-            if (isValidAddress(address)) {
-                st.setAddress(address);
-                break;
-            }
-        } while (true);
-        do {
-            System.out.println("Enter your height: ");
-            heightText = sc.nextLine();
-            if (isValidHeight(heightText)) {
-                st.setHeight(Float.parseFloat(heightText));
-                break;
-            }
-        } while (true);
-        do {
-            System.out.println("Enter your weight : ");
-            weightText = sc.nextLine();
-            if (isValidWeight(weightText)) {
-                st.setWeight(Float.parseFloat(weightText));
-                break;
-            }
-        } while (true);
-
-        do {
-            System.out.println("Enter school name :");
-            schoolName = sc.nextLine();
-            if (isValidSchoolName(schoolName)) {
-                st.setSchool(schoolName);
-                break;
-            }
-        } while (true);
-
-        do {
-            System.out.println("Enter year of college :");
-            yearOfCollegeText = sc.nextLine();
-            if (isStartYearOfCollege(yearOfCollegeText)) {
-                st.setStartYearOfCollege(Integer.parseInt(yearOfCollegeText));
-                break;
-            }
-        } while (true);
-
-        do {
-            System.out.println("Enter GPA : ");
-            gpaText = sc.nextLine();
-            if (isGpa(gpaText)) {
-                st.setGpa(Float.parseFloat(gpaText));
-                break;
-            }
-        } while (true);
+        }while (!isClose);
 
         return st;
     }
@@ -294,6 +333,7 @@ public class StudentDynamicArrayService {
                     }
                     if (code.equals(student.getCode())) {
 
+                        System.out.println(student);
                         updateStudentInfo(student);
                         student.setAcademicRanking(academicRanking(student.getGpa()));
 
