@@ -3,6 +3,7 @@ package com.edu.service;
 import com.edu.constants.EnumAcademicRanking;
 import com.edu.model.Student;
 import com.edu.validator.StudentValidator;
+import com.sun.webkit.dom.DocumentImpl;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -381,7 +382,7 @@ public class StudentDynamicArrayService {
     }
 
 
-    public void sortStudents(){
+    public void sortStudentsAcademicRanking(){
         int sizearr = studentArrayList.size();
 
         if (sizearr == 0){
@@ -416,6 +417,31 @@ public class StudentDynamicArrayService {
             System.out.printf("%s: %.2f%%\n", entry.getKey(), percentage);
         }
 
+    }
+
+
+    public void sortStudentsGPA(){
+        int sizearr = studentArrayList.size();
+        if (sizearr == 0){
+            System.out.println("No data to sort.");
+            return;
+        }
+       Map<Double, Integer> gpaCountMap = new HashMap<>();
+        for (Student student : studentArrayList) {
+            double gpa = student.getGpa();
+            gpaCountMap.put(gpa, gpaCountMap.getOrDefault(gpa,0)+1);
+        }
+        Map<Double,Double> gpaPercentageMap = new HashMap<>();
+        for (Map.Entry<Double, Integer> entry : gpaCountMap.entrySet()){
+            double gpa = entry.getKey();
+            double count = entry.getValue();
+            double percentage = (count / sizearr) *100;
+            gpaPercentageMap.put(gpa, percentage);
+        }
+
+        for (Map.Entry<Double,Double> entry : gpaPercentageMap.entrySet()){
+            System.out.printf("%.0f: %.0f%%\n", entry.getKey(), entry.getValue());
+        }
     }
 
 

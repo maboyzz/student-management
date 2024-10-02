@@ -71,30 +71,34 @@ public class Main {
                         System.out.println(" 3.update students ");
                         System.out.println(" 4.delete students ");
                         System.out.println(" 5.sort students academic ranking %");
-
+                        System.out.println(" 6.sort students GPA %");
                         System.out.println(" every thing out");
 
-                        int choice1 = sc.nextInt();
+                        String choice1 = sc.nextLine();
                         switch (choice1) {
-                            case 1:
+                            case "1":
                                 System.out.println(" create students ");
                                 stdDynamic.addStudents();
                                 break;
-                            case 2:
+                            case "2":
                                 System.out.println(" read students ");
                                 stdDynamic.readStudents();
                                 break;
-                            case 3:
+                            case "3":
                                 System.out.println(" update students  ");
                                 stdDynamic.updateStudents();
                                 break;
-                            case 4:
+                            case "4":
                                 System.out.println(" delete students ");
                                 stdDynamic.deleteStudents();
                                 break;
-                            case 5:
+                            case "5":
                                 System.out.println("Sort by academic ranking %");
-                                stdDynamic.sortStudents();
+                                stdDynamic.sortStudentsAcademicRanking();
+                                break;
+                            case "6":
+                                System.out.println("Sort by academic GPA %");
+                                stdDynamic.sortStudentsGPA();
                                 break;
 
                             default:
