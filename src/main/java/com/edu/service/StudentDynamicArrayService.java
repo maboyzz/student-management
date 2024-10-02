@@ -5,8 +5,7 @@ import com.edu.model.Student;
 import com.edu.validator.StudentValidator;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.edu.constants.CommonConstants.DOB_FORMATTER;
 import static com.edu.constants.EnumAcademicRanking.*;
@@ -141,7 +140,7 @@ public class StudentDynamicArrayService {
         String choice;
 
         do {
-            System.out.println("ban muon sua j :");
+            System.out.println("What information do you want to edit for the student? :");
             System.out.println("1. edit full name");
             System.out.println("2. edit date of birth");
             System.out.println("3. edit address");
@@ -153,8 +152,8 @@ public class StudentDynamicArrayService {
             System.out.println("9. out");
 
             choice = sc.nextLine();
-            switch (choice){
-                case "1" :
+            switch (choice) {
+                case "1":
                     do {
                         System.out.println("Enter full name : ");
                         fullName = sc.nextLine();
@@ -168,7 +167,7 @@ public class StudentDynamicArrayService {
                     break;
 
 
-                case "2" :
+                case "2":
                     do {
 
                         System.out.println("Enter your birthdate (yyyy-mm-dd) :");
@@ -182,7 +181,7 @@ public class StudentDynamicArrayService {
 
                     } while (true);
                     break;
-                case "3" :
+                case "3":
                     do {
                         System.out.println("Enter your address : ");
                         address = sc.nextLine();
@@ -192,7 +191,7 @@ public class StudentDynamicArrayService {
                         }
                     } while (true);
                     break;
-                case "4" :
+                case "4":
                     do {
                         System.out.println("Enter your height: ");
                         heightText = sc.nextLine();
@@ -202,7 +201,7 @@ public class StudentDynamicArrayService {
                         }
                     } while (true);
                     break;
-                case "5" :
+                case "5":
                     do {
                         System.out.println("Enter your weight : ");
                         weightText = sc.nextLine();
@@ -212,7 +211,7 @@ public class StudentDynamicArrayService {
                         }
                     } while (true);
                     break;
-                case "6" :
+                case "6":
                     do {
                         System.out.println("Enter school name :");
                         schoolName = sc.nextLine();
@@ -223,7 +222,7 @@ public class StudentDynamicArrayService {
                     } while (true);
 
                     break;
-                case "7" :
+                case "7":
                     do {
                         System.out.println("Enter year of college :");
                         yearOfCollegeText = sc.nextLine();
@@ -233,7 +232,7 @@ public class StudentDynamicArrayService {
                         }
                     } while (true);
                     break;
-                case "8" :
+                case "8":
                     do {
                         System.out.println("Enter GPA : ");
                         gpaText = sc.nextLine();
@@ -244,12 +243,12 @@ public class StudentDynamicArrayService {
                     } while (true);
 
                     break;
-                case "9" :
+                case "9":
                     isClose = true;
                     break;
             }
 
-        }while (!isClose);
+        } while (!isClose);
 
         return st;
     }
@@ -381,6 +380,45 @@ public class StudentDynamicArrayService {
         } while (true);
     }
 
+
+    public void sortStudents(){
+        int sizearr = studentArrayList.size();
+
+        if (sizearr == 0){
+            System.out.println("No data to sort.");
+            return;
+        }
+
+        // Map để lưu số lượng sinh viên theo từng loại học lực
+        Map<EnumAcademicRanking, Integer> rankingCountMap = new HashMap<>();
+        rankingCountMap.put(EXCELLENT, 0);
+        rankingCountMap.put(GOOD, 0);
+        rankingCountMap.put(FAIR, 0);
+        rankingCountMap.put(AVERAGE, 0);
+        rankingCountMap.put(BELOW_AVERAGE, 0);
+        rankingCountMap.put(POOR, 0);
+
+        // Duyệt qua danh sách sinh viên và đếm số lượng sinh viên theo loại học lực
+        for (Student student : studentArrayList) {
+            EnumAcademicRanking ranking = student.getAcademicRanking();
+            rankingCountMap.put(ranking, rankingCountMap.get(ranking) + 1);
+        }
+
+        // Sắp xếp Map theo giá trị (số lượng sinh viên) từ cao xuống thấp
+        List<Map.Entry<EnumAcademicRanking, Integer>> sortedRankingList = new ArrayList<>(rankingCountMap.entrySet());
+        sortedRankingList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        // In ra kết quả
+        System.out.println("Academic performance sorted from highest to lowest (by %):");
+        for (Map.Entry<EnumAcademicRanking, Integer> entry : sortedRankingList) {
+            // Tính phần trăm
+            float percentage = (entry.getValue() * 100.0f) / sizearr;
+            System.out.printf("%s: %.2f%%\n", entry.getKey(), percentage);
+        }
+
+    }
+
+
     private EnumAcademicRanking academicRanking(float gpa) {
 
         EnumAcademicRanking check = null;
@@ -394,7 +432,7 @@ public class StudentDynamicArrayService {
             check = FAIR;
         } else if (gpa >= 7.5 && gpa < 9) {
             check = GOOD;
-        }else {
+        } else {
             check = EXCELLENT;
         }
 

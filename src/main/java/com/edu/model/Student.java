@@ -61,9 +61,9 @@ public class Student extends Person {
         return "\nid = " + super.getId() +
                 ", fullName= '" + super.getFullName() + '\'' +
                 ", dateOfBirth= " + super.getDateOfBirth() +
-                ", address= " + super.getAddress()  +
+                ", address= " + super.getAddress() +
                 ", height= " + super.getHeight() +
-                ", weight= " + super.getWeight()+
+                ", weight= " + super.getWeight() +
                 "code= " + code +
                 ", school= " + school +
                 ", startYearOfCollege= " + startYearOfCollege +

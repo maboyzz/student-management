@@ -22,6 +22,7 @@ public class Main {
             System.out.println("\nStudents management\n");
             System.out.println(" 1.Students Static Array ");
             System.out.println(" 2.Students Dynamic Array");
+            System.out.println(" every thing out");
             String choice = sc.nextLine();
 
             switch (choice) {
@@ -34,6 +35,8 @@ public class Main {
                         System.out.println(" 2.read students ");
                         System.out.println(" 3.update students ");
                         System.out.println(" 4.delete students ");
+                        System.out.println(" every thing out");
+
 
                         int choice1 = sc.nextInt();
                         switch (choice1) {
@@ -53,10 +56,6 @@ public class Main {
                                 System.out.println(" delete students ");
                                 stdStatic.deleteStudents1();
                                 break;
-                            case 5:
-                                System.out.println("!");
-                                isBreakStatic = true;
-                                break;
                             default:
                                 System.out.println("!");
                                 isBreakStatic = true;
@@ -65,48 +64,52 @@ public class Main {
                     } while (!isBreakStatic);
                     break;
                 case "2":
-                do {
-                    System.out.println("\nStudents Dynamic Array\n");
-                    System.out.println(" 1.create students ");
-                    System.out.println(" 2.read students ");
-                    System.out.println(" 3.update students ");
-                    System.out.println(" 4.delete students ");
+                    do {
+                        System.out.println("\nStudents Dynamic Array\n");
+                        System.out.println(" 1.create students ");
+                        System.out.println(" 2.read students ");
+                        System.out.println(" 3.update students ");
+                        System.out.println(" 4.delete students ");
+                        System.out.println(" 5.sort students academic ranking %");
 
-                    int choice1 = sc.nextInt();
-                    switch (choice1) {
-                        case 1:
-                            System.out.println(" create students ");
-                            stdDynamic.addStudents();
-                            break;
-                        case 2:
-                            System.out.println(" read students ");
-                            stdDynamic.readStudents();
-                            break;
-                        case 3:
-                            System.out.println(" update students  ");
-                            stdDynamic.updateStudents();
-                            break;
-                        case 4:
-                            System.out.println(" delete students ");
-                            stdDynamic.deleteStudents();
-                            break;
-                        case 5:
-                            System.out.println("!");
-                            isBreakDynamic = true;
-                            break;
-                        default:
-                            System.out.println("!");
-                            isBreakDynamic = true;
-                            break;
-                    }
-                } while (!isBreakDynamic);
-                break;
+                        System.out.println(" every thing out");
+
+                        int choice1 = sc.nextInt();
+                        switch (choice1) {
+                            case 1:
+                                System.out.println(" create students ");
+                                stdDynamic.addStudents();
+                                break;
+                            case 2:
+                                System.out.println(" read students ");
+                                stdDynamic.readStudents();
+                                break;
+                            case 3:
+                                System.out.println(" update students  ");
+                                stdDynamic.updateStudents();
+                                break;
+                            case 4:
+                                System.out.println(" delete students ");
+                                stdDynamic.deleteStudents();
+                                break;
+                            case 5:
+                                System.out.println("Sort by academic ranking %");
+                                stdDynamic.sortStudents();
+                                break;
+
+                            default:
+                                System.out.println("!");
+                                isBreakDynamic = true;
+                                break;
+                        }
+                    } while (!isBreakDynamic);
+                    break;
                 default:
                     isExit = true;
                     break;
             }
 
-        }while (!isExit) ;
+        } while (!isExit);
 
     }
 }
